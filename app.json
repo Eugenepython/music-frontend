@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "my-music-game",
+    "slug": "my-music-game",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/rackham.jpg",
+    "userInterfaceStyle": "light",
+    "permissions": [
+      "android.permission.DETECT_SCREEN_CAPTURE"
+    ],
+    "splash": {
+      "image": "./assets/rackham.jpg",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/rackham.jpg",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.eugene1981.mymusicgame",
+      "scheme": "myawesomeapp"
+    },
+    "web": {
+      "favicon": "./assets/rackham.jpg"
+    },
+    "plugins": [
+      "expo-secure-store"
+    ]
+  }
+}
