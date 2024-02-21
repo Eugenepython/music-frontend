@@ -10,6 +10,8 @@ import { app } from "../firebaseConfig"
 import { getFirestore, collection, addDoc, setDoc, doc } from 'firebase/firestore';
 import MusicImage from '../assets/myNotes.png';
 import * as Clipboard from 'expo-clipboard';
+import { extra as expoConfigExtra } from "../expoConfig";
+
 
 
 
@@ -44,10 +46,16 @@ const GoodnessGracious = () => {
     const gameName = route.params.gameName
     const rounds = route.params.rounds
     const navigation = useNavigation();
+    const apiEndpoint= expoConfigExtra.flower
+  
 
     const copyToClipboard = async () => {
         await Clipboard.setStringAsync(codeToEmail);
       };
+
+
+ 
+console.log("the api endpoint is " + apiEndpoint)  //  https://music-backend-production-017c.up.railway.app
 
       useEffect(() => {
         const handleBackButton = () => {
@@ -84,7 +92,9 @@ const GoodnessGracious = () => {
             });
             axios.defaults.debug = true;
 
-            const response = await axios.post('http://192.168.1.142:3001/inviteApi', dataToSend); // my private IP address
+            const response = await axios.post(`${apiEndpoint}/inviteApi`, dataToSend);
+
+           // const response = await axios.post('https://192.168.1.142:3001/inviteApi', dataToSend); // my private IP address
             //const response = await axios.post('http://86.140.153.193:3001/inviteApi', dataToSend);
             //const response = await axios.post('https://[2a00:23c5:403:4e01:21f4:fb2:e95d:3032]:3001/inviteApi', dataToSend);
 

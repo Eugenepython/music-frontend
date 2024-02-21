@@ -15,6 +15,8 @@ const AnyName = () => {
     const [inputValues, setInputValues] = useState(Array.from({ length: numbers }, () => ''));
     const [enteredValues, setEnteredValues] = useState([]);
     const [allBoxesSubmitted, setAllBoxesSubmitted] = useState(false);
+    const [activeIndex, setActiveIndex] = useState(0);
+
 
     useEffect(() => {
         const isAllSubmitted = enteredValues.every(value => value !== '');
@@ -40,8 +42,12 @@ const AnyName = () => {
         const newInputValues = [...inputValues];
         newInputValues[index] = '';
         setInputValues(newInputValues);
+        const nextIndex = index + 1;
+        if (nextIndex < inputValues.length) {
+            setActiveIndex(nextIndex);
+        }
     };
-
+// i 
     function sendEmails() {
         console.log('Game Name:', gameName)
         console.log('Total Submitted Values:', enteredValues);
@@ -66,7 +72,7 @@ const AnyName = () => {
                         style={styles.input}
                         value={value}
                         onChangeText={(text) => handleInputChange(index, text)}
-                        placeholder={`Enter email of player ${index + 1}`}
+                        placeholder={`Enter email of player`}
                     />
                     <TouchableOpacity
                         onPress={() => handleInputSubmit(index)}

@@ -23,14 +23,14 @@ const NewGameScreen = () => {
     const navigation = useNavigation();
 
     const handleSubmit = () => {
-        const isValid = /^[1-6]$/.test(numberOfPlayers);
+        const isValid = /^[2-5]$/.test(numberOfPlayers);
         if (isValid) {
             setPlayers(numberOfPlayers);
             setNumberOfPlayers('');
             //onChangeNumber('');
             setIsPlayersNumberReady(true);
         } else {
-            Alert.alert('Error', 'Please enter a valid number of players - max 6.');
+            Alert.alert('Error', 'Please enter a valid number of players - max 5.');
         }
     };
 
@@ -50,7 +50,7 @@ const NewGameScreen = () => {
 
 
     const handleSubmitRounds = () => {
-        const isValid = /^[1-6]$/.test(numberOfRounds);
+        const isValid = /^[2-5]$/.test(numberOfRounds);
         if (isValid) {
             setRounds(numberOfRounds)
             setNumberOfRounds('');
@@ -114,7 +114,7 @@ const NewGameScreen = () => {
                         onChangeText={(text) => setNumberOfPlayers(text)}
                         //value={number}
                         value={numberOfPlayers}
-                        placeholder="maximum 6 players"
+                        placeholder="maximum 5 players"
                         keyboardType="numeric"
                     />
                     <Pressable
