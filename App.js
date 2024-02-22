@@ -1,6 +1,5 @@
 //App.js
-import React, { useEffect } from "react";
-import Constants from "expo-constants"
+import React, { useEffect, useState } from "react";
 
 // i get "midleware is not a function (it is undefined)" error when i try to import this
 import { SafeAreaView, Text, StyleSheet, View, Button, Pressable, Image, TouchableOpacity } from "react-native";
@@ -166,16 +165,20 @@ const SignOut = () => {
 
 
 const HomeScreen = () => {
-
+  const [fontsLoaded, setFontsLoaded] = useState(false);
   const [userName, setUserName] = React.useState("")
   const [userEmail, setUserEmail] = React.useState("")
   const navigation = useNavigation();
 
   useEffect(() => {
-    Font.loadAsync({
-      'TINTIN': require('./assets/fonts/TINTIN.ttf'),
-      'RobotoCondensed': require('./assets/fonts/RobotoCondensed-VariableFont_wght.ttf')
-    });
+    async function loadFonts() {
+      await Font.loadAsync({
+        'TINTIN': require('./assets/fonts/TINTIN.ttf'),
+        'RobotoCondensed': require('./assets/fonts/RobotoCondensed-VariableFont_wght.ttf')
+      });
+      setFontsLoaded(true);
+    }
+    loadFonts();
   }, []);
 
   const handleNewGamePress = () => {
@@ -191,6 +194,11 @@ const HomeScreen = () => {
     setUserName(x.fullName)
     setUserEmail(x.emailAddress)
   }
+
+  if (!fontsLoaded) {
+        return null;
+  }
+
   return (
     <SafeAreaView style={styles.container}>
 

@@ -4,35 +4,45 @@
     "slug": "my-music-game",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/rackham.jpg",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "permissions": [
-      "android.permission.DETECT_SCREEN_CAPTURE"
-    ],
     "splash": {
-      "image": "./assets/rackham.jpg",
+      "image": "./assets/icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
+    "scheme": "mymusicgame",
+    "extra": {
+      "eas": {
+        "projectId": "0e5c71ac-6688-44b1-a03b-a224883e64d4"
+      }
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/rackham.jpg",
-        "backgroundColor": "#ffffff"
-      },
-      "package": "com.eugene1981.mymusicgame",
-      "scheme": "myawesomeapp"
+      "package": "com.eugene1981.mymusicgame"
+    }
+  },
+  "assetBundlePatterns": [
+    "**/*"
+  ],
+  "ios": {
+    "supportsTablet": true
+  },
+  "android": {
+    "adaptiveIcon": {
+      "foregroundImage": "./assets/icon.png",
+      "backgroundColor": "#ffffff"
     },
-    "web": {
-      "favicon": "./assets/rackham.jpg"
-    },
-    "plugins": [
-      "expo-secure-store"
-    ]
+    "package": "com.eugene1981.mymusicgame"
+  },
+  "web": {
+    "favicon": "./assets/icon.png"
+  },
+  "plugins": [
+    "expo-secure-store"
+  ],
+  "extra": {
+    "eas": {
+      "projectId": "0e5c71ac-6688-44b1-a03b-a224883e64d4"
+    }
   }
 }
