@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { View, FlatList, Text, StyleSheet, TouchableOpacity, ActivityIndicator, Image, SafeAreaView, Button, BackHandler} from 'react-native';
+import { View, FlatList, Text, StyleSheet, TouchableOpacity, ActivityIndicator, Image, SafeAreaView, Button, BackHandler, StatusBar} from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
@@ -134,7 +134,11 @@ console.log("the api endpoint is " + apiEndpoint)  //  https://music-backend-pro
 
 
     return isVisible ? (
-<SafeAreaView style={{ flex: 1, backgroundColor: 'pink' }}>
+<SafeAreaView style={{ flex: 1, backgroundColor: '#FFB6C1' }}>
+<StatusBar
+  barStyle="light-content"
+  backgroundColor="#FFB6C1"
+/>
         
             <View style={styles.container}>
             <Text style={{ fontFamily: 'TINTIN', fontSize: 34, textAlign: 'center', padding : 10 }}>RUBRIKAL SONG CONTEST</Text>
@@ -166,6 +170,10 @@ console.log("the api endpoint is " + apiEndpoint)  //  https://music-backend-pro
         </SafeAreaView>
     ) : (
         <SafeAreaView  style={{ flex: 1, backgroundColor: 'pink' }}>
+            <StatusBar
+  barStyle="light-content"
+  backgroundColor="#FFB6C1"
+/>
             <View style={styles.container}>
              <Text style={{ fontFamily: 'TINTIN', fontSize: 34, textAlign: 'center', padding : 10 }}>RUBRIKAL SONG CONTEST</Text>
             <Text style={{ fontSize: 24, fontWeight: 'bold' }}>Invites were sent successfully to:</Text>

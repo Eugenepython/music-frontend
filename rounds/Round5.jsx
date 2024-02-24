@@ -8,6 +8,8 @@ import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native'
 import * as Font from 'expo-font';
 import myNotesImage from '../assets/myNotes.png';
+import Constants from 'expo-constants';
+
 
 
 
@@ -713,7 +715,7 @@ if (theGameDetails.finishers) {
 
 
       
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#FFD699'}}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#FFD699', paddingTop: Constants.statusBarHeight }}>
                    
         <Text style={{ fontFamily: 'TINTIN', fontSize: 34,  textAlign: 'center', marginTop : 40}}>RUBRIKAL SONG CONTEST</Text>
 

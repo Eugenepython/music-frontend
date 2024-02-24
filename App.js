@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 
 // i get "midleware is not a function (it is undefined)" error when i try to import this
-import { SafeAreaView, Text, StyleSheet, View, Button, Pressable, Image, TouchableOpacity } from "react-native";
+import { SafeAreaView, Text, StyleSheet, View, Button, Pressable, Image, TouchableOpacity, StatusBar } from "react-native";
 import { ClerkProvider, SignedIn, SignedOut, useAuth } from "@clerk/clerk-expo";
 import { extra as expoConfigExtra } from "./expoConfig";
 import SignInWithOAuth from "./introComponents/SignInWithOAuth.jsx";
@@ -26,6 +26,8 @@ import Round5 from "./rounds/Round5.jsx";
 import ScorePage from "./rounds/ScorePage.jsx";
 import * as Font from 'expo-font';
 import MusicImage from './assets/music.png';
+import Constants from 'expo-constants';
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -201,6 +203,10 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+        <StatusBar
+      barStyle="light-content"
+      backgroundColor="#ff69b4"
+    />
 
       <Text style={{ fontFamily: 'TINTIN', fontSize: 34, top: '5%', textAlign: 'center', position: 'absolute',}}>RUBRIKAL SONG CONTEST</Text>
       <Image source={MusicImage} style={{top: '9%', width: 100, height: 200, resizeMode: 'cover', borderRadius: 10, position: 'absolute' }} />
@@ -349,6 +355,7 @@ const styles = StyleSheet.create({
     backgroundColor:  '#ff69b4',
     alignItems: "center",
     justifyContent: "center",
+    paddingTop: Constants.statusBarHeight
   },
   button: {
     alignItems: 'center',

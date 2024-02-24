@@ -1,11 +1,12 @@
 //WelcomeToGame.jsx
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button, Pressable, TouchableOpacity, SafeAreaView, StyleSheet, Image, BackHandler } from 'react-native';
+import { View, Text, TextInput, Button, Pressable, TouchableOpacity, SafeAreaView, StyleSheet, Image, BackHandler, StatusBar } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { app } from "./firebaseConfig"
 import { getFirestore, collection, addDoc, getDocs, doc, getDoc, setDoc, onSnapshot, updateDoc } from 'firebase/firestore';
 import MusicImage from './assets/music.png';
+import Constants from 'expo-constants';
 
 const Welcome = () => {
     const [roundsNumber, setRoundsNumber] = useState(0)
@@ -146,7 +147,7 @@ const Welcome = () => {
     };
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: 'pink' }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: 'pink', paddingTop: Constants.statusBarHeight }}>
         <View style={{ flex: 1 }}>
                         <Text style={{ marginTop: 40, fontFamily: 'TINTIN', fontSize: 34, textAlign: 'center', padding : 10 }}>RUBRIKAL SONG CONTEST</Text>
 

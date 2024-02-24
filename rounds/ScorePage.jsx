@@ -1,12 +1,14 @@
 //ScorePage.jsx
 import React, { useState, useEffect } from 'react';
-import { Modal, ScrollView, SafeAreaView, View, Text, TextInput, Button, StyleSheet, TouchableOpacity, Linking, Pressable, BackHandler, Dimensions } from 'react-native';
+import { Modal, ScrollView, SafeAreaView, View, Text, TextInput, Button, StyleSheet, TouchableOpacity, Linking, Pressable, BackHandler, Dimensions, StatusBar } from 'react-native';
 import { useSelector } from 'react-redux';
 import { getTopSongsBySum } from '../someFunctions';
 import { app } from "../firebaseConfig"
 import { getFirestore, collection, deleteField, getDocs, doc, setDoc, getDoc, query, updateDoc, onSnapshot, arrayUnion, deleteDoc } from 'firebase/firestore';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
+import Constants from 'expo-constants';
+
 
 
 
@@ -26,6 +28,7 @@ const ScorePage = () => {
     const [freezeResults, setFreezeResults] = useState(false)
     const [hideResultsButton, setHideResultsButton] = useState(true)
     const [playerRankings, setPlayerRankings] = useState([])
+    const [message, setMessage] = useState("")
 
     const firestore = getFirestore(app);
 
@@ -172,6 +175,7 @@ const theRankings = playerRankings.map((item, index) => (
     ));
 
     async function getEachPlayer() {
+        setMessage("Gathering results.....")
         console.log(rounds, "rounds")
         let emptyArray = []
         const initialPath = `${gameCode}/onlinePlayers/trackingOnlinePlayers`;
@@ -196,6 +200,7 @@ const theRankings = playerRankings.map((item, index) => (
         setThirdPlaceResults(outCome.thirdTopSongs)
         setLoserResults(outCome.lowestSongs)
         setFreezeResults(true)
+        setMessage("")
     }
 
 
@@ -233,7 +238,11 @@ const theRankings = playerRankings.map((item, index) => (
 
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#5C6BC0'}}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#ADD8E6', paddingTop: Constants.statusBarHeight }}>
+             <StatusBar
+      barStyle="light-content"
+      backgroundColor="#ADD8E6" 
+    />
             <Text style={{ fontFamily: 'TINTIN', fontSize: 34,  textAlign: 'center', marginTop : 40}}>RUBRIKAL SONG CONTEST</Text>
 
             
@@ -242,6 +251,7 @@ const theRankings = playerRankings.map((item, index) => (
 
                     <View style={styles.theHeader}>
                 <Text style={styles.heading}>Final Scores</Text>
+                <Text style={{ color: 'red', fontSize: 20, fontWeight: 'bold' }}>{message}</Text>
                 {showResults && freezeResults && <View>
                     <TouchableOpacity
                         style={{
@@ -261,7 +271,7 @@ const theRankings = playerRankings.map((item, index) => (
                     <Pressable
                         onPress={() => getEachPlayer()}
                     >
-                        <Text style={styles.pressMeButton}>Press Me</Text>
+                        <Text style={styles.pressMeButton}>Reveal the winners and losers</Text>
                     </Pressable>
                     </View>     }
 
@@ -356,10 +366,15 @@ const styles = StyleSheet.create({
     pressMeButton: {
         backgroundColor: 'blue',
         color: 'white',
-        padding: 10,
+        padding: 15,
         textAlign: 'center',
         margin: 10,
-    },
+        borderRadius: 10, // Adjust the border radius for soft edges
+        width: 150, // Set a fixed width for the rectangle
+        alignSelf: 'center', // Center horizontally
+        fontSize: 24,
+      },
+      
    theHeader :{
     flex: 1,
     flexDirection: 'row', // Set flexDirection to 'row' for horizontal layout

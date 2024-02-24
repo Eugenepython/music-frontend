@@ -8,6 +8,8 @@ import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native'
 import * as Font from 'expo-font';
 import myNotesImage from '../assets/myNotes.png';
+import Constants from 'expo-constants';
+
 
 
 
@@ -747,7 +749,7 @@ if (theGameDetails.finishers) {
 
     return (
        
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#FFD699'}}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#FFD699', paddingTop: Constants.statusBarHeight }}>
                    
         <Text style={{ fontFamily: 'TINTIN', fontSize: 34,  textAlign: 'center', marginTop : 40}}>RUBRIKAL SONG CONTEST</Text>
 
@@ -893,7 +895,7 @@ onPress={leaveGame}
                                         <Button title="Go to Round 4" onPress={() => goToRound4()} />
                                     }
                                     {roundsNumber === 3 &&
-                                        <Button title="The gmae is over, check out the scores!" onPress={() => goToScorePage()} />
+                                        <Button title="The game is over, check out the scores!" onPress={() => goToScorePage()} />
                                     }
                                 </View>
                             }

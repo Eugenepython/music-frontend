@@ -1,6 +1,6 @@
 //EmailAddressInput.jsx
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, TextInput, Button, Text, TouchableOpacity, Image, SafeAreaView } from 'react-native';
+import { StyleSheet, View, TextInput, Button, Text, TouchableOpacity, Image, SafeAreaView, StatusBar } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import MusicImage from '../assets/myNotes.png';
 
@@ -61,6 +61,10 @@ const AnyName = () => {
 
     return (
         <SafeAreaView style={styles.container} >
+            <StatusBar
+  barStyle="light-content"
+  backgroundColor= "lightcoral"
+/>
         <View>
         <View style={{ marginTop: 40, marginLeft: 5, marginRight: 5}}>
         <Text style={{ fontFamily: 'TINTIN', fontSize: 34, textAlign: 'center', padding : 10 }}>RUBRIKAL SONG CONTEST</Text>

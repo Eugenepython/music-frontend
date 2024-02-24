@@ -1,6 +1,6 @@
 // NewGameScreen.jsx
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, TextInput, Text, Pressable, Alert, View, ScrollView, } from 'react-native';
+import { SafeAreaView, StyleSheet, TextInput, Text, Pressable, Alert, View, ScrollView, StatusBar } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 const NewGameScreen = () => {
@@ -70,6 +70,10 @@ const NewGameScreen = () => {
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: 'lightyellow' }}>
+            <StatusBar
+  barStyle="light-content"
+  backgroundColor="lightyellow" 
+/>
                <ScrollView  >
             <View style={{ marginTop: 40, marginLeft: 5, marginRight: 5}}>
             <Text style={{ fontFamily: 'TINTIN', fontSize: 34, textAlign: 'center', padding : 10 }}>RUBRIKAL SONG CONTEST</Text>

@@ -1,6 +1,6 @@
 //ParticipateInGame.jsx
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Pressable, SafeAreaView, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TextInput, Button, Pressable, SafeAreaView, StyleSheet, TouchableOpacity, Image, StatusBar } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { app } from "./firebaseConfig"
 import { useNavigation } from '@react-navigation/native';
@@ -9,6 +9,7 @@ import { setGameToPlay, nameOfTheCode } from './actions/gamePlayingActions';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import MusicImage from './assets/myNotes.png';
+import Constants from 'expo-constants';
 
 
 
@@ -212,9 +213,10 @@ const HeavensAbove = () => {
 const styles = StyleSheet.create({
         container: {
           flex: 1,
-          backgroundColor:  '#ff69b4',
+          backgroundColor:  '#FFB6C1',
           alignItems: "center",
           justifyContent: "center",
+          paddingTop: Constants.statusBarHeight
         },
 firstContainer: {
     flex: 1,

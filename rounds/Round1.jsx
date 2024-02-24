@@ -1,6 +1,6 @@
 //round1.jsx
 import React, { useState, useEffect } from 'react';
-import { Modal, ScrollView, SafeAreaView, View, Text, TextInput, Button, Pressable, StyleSheet, TouchableOpacity, Linking, BackHandler, Image} from 'react-native';
+import { Modal, ScrollView, SafeAreaView, View, Text, TextInput, Button, Pressable, StyleSheet, TouchableOpacity, Linking, BackHandler, Image, StatusBar} from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { app } from "../firebaseConfig"
 import { getFirestore, collection, deleteField, addDoc, getDocs, doc, setDoc, getDoc, exists, query, subcollection, where, updateDoc, onSnapshot, arrayUnion, deleteDoc  } from 'firebase/firestore';
@@ -8,6 +8,7 @@ import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native'
 import * as Font from 'expo-font';
 import myNotesImage from '../assets/myNotes.png';
+import Constants from 'expo-constants';
 
 
 
@@ -785,7 +786,13 @@ if (theGameDetails.finishers) {
     );
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#FFD699' }}>
+     
+   <SafeAreaView style={{ flex: 1, backgroundColor: '#FFD699', paddingTop: Constants.statusBarHeight}}>
+  <StatusBar
+      barStyle="light-content"
+      backgroundColor="#FFD699" 
+    />
+        
           <Text style={{ fontFamily: 'TINTIN', fontSize: 34, textAlign: 'center', marginTop: 40 }}>RUBRIKAL SONG CONTEST</Text>
           
           <View style={{ flex: 1 }}>
@@ -929,6 +936,7 @@ if (theGameDetails.finishers) {
               </View>
             )}
           </View>
+       
         </SafeAreaView>
       )
       
