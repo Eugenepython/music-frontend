@@ -245,7 +245,16 @@ const HomeScreen = () => {
       </SignedIn>
       <SignedOut>
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center',}}>
+      <Pressable style={({ pressed }) => [
+            styles.button,
+            {
+              backgroundColor: pressed ? 'darkred' : 'red',
+            },
+          ]}>
+        <Text style={styles.buttonText}>Chameleon</Text>
+      </Pressable>
       <Text style={{ fontFamily: 'RobotoCondensed', fontSize: 28, top: '50%', textAlign: 'center', position: 'absolute',  paddingHorizontal: 20, color: '#333'}}>Sign in securely with your google account</Text>
+ 
         <SignInWithOAuth   />
         </View>
       </SignedOut>

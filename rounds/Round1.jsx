@@ -4,11 +4,13 @@ import { Modal, ScrollView, SafeAreaView, View, Text, TextInput, Button, Pressab
 import { useSelector, useDispatch } from 'react-redux';
 import { app } from "../firebaseConfig"
 import { getFirestore, collection, deleteField, addDoc, getDocs, doc, setDoc, getDoc, exists, query, subcollection, where, updateDoc, onSnapshot, arrayUnion, deleteDoc  } from 'firebase/firestore';
-import { Picker } from '@react-native-picker/picker';
+
 import { useNavigation } from '@react-navigation/native'
 import * as Font from 'expo-font';
 import myNotesImage from '../assets/myNotes.png';
 import Constants from 'expo-constants';
+
+import RNPickerSelect from 'react-native-picker-select';
 
 
 
@@ -414,10 +416,7 @@ if (theGameDetails.finishers) {
 
 
 
-    const handleScoreChange = (itemValue) => {
-        const numericValue = parseInt(itemValue, 10);
-        setSelectedScore(numericValue);
-    };
+  
 
 
     function playSong(index) {
@@ -458,7 +457,7 @@ if (theGameDetails.finishers) {
     async function scoreModal() {
         const theOrder = playedIndexes[playedIndexes.length - 2];
         if (selectedScore) {
-            setSelectedScore(0);
+            //setSelectedScore(0);
             //    console.log(individualUser + " gave a score of " + selectedScore + " for " + sortedSubmissions[theOrder].userName + "'s song called "
             // + sortedSubmissions[theOrder].song + " by " + sortedSubmissions[theOrder].artist)
             try {
@@ -515,37 +514,46 @@ if (theGameDetails.finishers) {
         </View>
     </Modal>
 
+const handleScoreChange = (itemValue) => {
+    const numericValue = parseInt(itemValue, 10);
+    setSelectedScore(numericValue);
+};
 
-    const theModal = <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-            setModalVisible(!modalVisible);
-        }}
+
+
+const theModal = (
+    <Modal
+      animationType="slide"
+      transparent={true}
+      visible={modalVisible}
+      onRequestClose={() => {
+        setModalVisible(!modalVisible);
+      }}
     >
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <View style={{ backgroundColor: 'white', padding: 20, borderRadius: 10 }}>
-
-            <Text style= {{fontSize: 18}}>Select your score out of 10:</Text>
-                <Text style= {{fontSize: 18}}>{selectedScore}/10</Text>
-                <Picker
-                    selectedValue={selectedScore}
-                    onValueChange={handleScoreChange}
-                    style={styles.picker}
-                    itemStyle={styles.pickerItem}
-                >
-                    {/* Create Picker.Item for each score option */}
-                    {Array.from({ length: 11 }, (_, index) => (
-                        <Picker.Item key={index} label={index.toString()} value={index.toString()} />
-                    ))}
-                </Picker>
-
-                <Button title="Score and close" onPress={() => scoreModal()} />
-
-            </View>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ backgroundColor: 'white', padding: 20, borderRadius: 10 }}>
+          <Text style={{ fontSize: 18 }}>Select your score out of 10:</Text>
+          <Text style={{ fontSize: 18 }}>{selectedScore}/10</Text>
+  
+          <RNPickerSelect
+            value={selectedScore}
+            onValueChange={handleScoreChange}
+            style={styles.picker}
+            placeholder={{ label: 'Select a score' }}
+            items={Array.from({ length: 11 }, (_, index) => ({
+              label: index.toString(),
+              value: index.toString(),
+            }))}
+          />
+  
+          <Button title="Score and close" onPress={() => scoreModal()} />
         </View>
+      </View>
     </Modal>
+  );
+
+
+
 
 
 
