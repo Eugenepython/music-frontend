@@ -42,6 +42,8 @@ const ScorePage = () => {
         };
     }, []);
 
+
+
     function groupedByPlayerName(y) {
         return y.reduce((acc, item) => {
           const playerName = item.playerName || 'No Player Name';
@@ -243,7 +245,7 @@ const theRankings = playerRankings.map((item, index) => (
       barStyle="light-content"
       backgroundColor="#ADD8E6" 
     />
-            <Text style={{ fontFamily: 'TINTIN', fontSize: 34,  textAlign: 'center', marginTop : 40}}>RUBRIKAL SONG CONTEST</Text>
+            <Text style={{ fontFamily: 'TINTIN', fontSize: 34,  textAlign: 'center', marginTop : 20}}>RUBRIKAL SONG CONTEST</Text>
 
             
             <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-start' }}>
@@ -285,14 +287,14 @@ const theRankings = playerRankings.map((item, index) => (
 
                     <View style={[styles.container, { borderColor: 'gold' }]}>
                     
-                        <Text><FontAwesome name="trophy" color="gold" size={20} />First</Text>
+                        <Text><FontAwesome name="trophy" color="gold" size={20} /> First</Text>
                         <Text>{winnerResults[0].sum} points</Text>
                         {winnerResults.map((result, index) => (
                                  
                             <View key={index} style={styles.winnerText}>
-                                <Text style = {{ maxWidth: '48%'}}>{result.song}</Text>
-                                <Text style = {{ maxWidth: '48%'}}>Player: {result.playerName}</Text>
-                                <Text style = {{ maxWidth: '48%'}}>Artist: {result.artist} </Text>
+                                  <Text style={styles.songText}>{result.song}</Text>
+        <Text style={styles.playerText}>Player: {result.playerName}</Text>
+        <Text style={styles.artistText}>Artist: {result.artist}</Text>
                                 <TouchableOpacity onPress={() => handleLinkPress(result.url)}>
                                     <Text style={styles.linkText}>Listen Again</Text>
                                 </TouchableOpacity>
@@ -303,13 +305,13 @@ const theRankings = playerRankings.map((item, index) => (
 
 
                         <View style={[styles.container, { borderColor: 'silver' }]}>
-<Text><FontAwesome name="trophy" color="grey" size={20} />Second</Text>
+<Text><FontAwesome name="trophy" color="grey" size={20} /> Second</Text>
 <Text>{runnerUpResults[0].sum} points</Text>
                         {runnerUpResults.map((result, index) => (
                             <View key={index} style={styles.secondText}>
-                                <Text style = {{ maxWidth: '48%'}}>{result.song}</Text>
-                               <Text style = {{ maxWidth: '48%'}}>Player: {result.playerName}</Text>
-                                <Text style = {{ maxWidth: '48%'}}>Artist: {result.artist} </Text>
+                                                         <Text style={styles.songText}>{result.song}</Text>
+        <Text style={styles.playerText}>Player: {result.playerName}</Text>
+        <Text style={styles.artistText}>Artist: {result.artist}</Text>
                                 <TouchableOpacity onPress={() => handleLinkPress(result.url)}>
                                     <Text style={styles.linkText}>Listen Again</Text>
                                 </TouchableOpacity>
@@ -318,13 +320,13 @@ const theRankings = playerRankings.map((item, index) => (
                         </View>
 
                         <View style={[styles.container, { borderColor: 'brown' }]}>                        
-                        <Text><FontAwesome name="trophy" color="brown" size={20} />Third</Text>
+                        <Text><FontAwesome name="trophy" color="brown" size={20} /> Third</Text>
                         <Text>{thirdPlaceResults[0].sum} points</Text>
                         {thirdPlaceResults.map((result, index) => (
                             <View key={index} style={styles.thirdText}>
-                                  <Text style = {{ maxWidth: '48%'}}>{result.song}</Text>
-                                 <Text style = {{ maxWidth: '48%'}}>Player: {result.playerName}</Text>
-                                <Text style = {{ maxWidth: '48%'}}>Artist: {result.artist} </Text>
+                                                         <Text style={styles.songText}>{result.song}</Text>
+        <Text style={styles.playerText}>Player: {result.playerName}</Text>
+        <Text style={styles.artistText}>Artist: {result.artist}</Text>
                                 <TouchableOpacity onPress={() => handleLinkPress(result.url)}>
                                     <Text style={styles.linkText}>Listen Again</Text>
                                 </TouchableOpacity>
@@ -399,8 +401,6 @@ const styles = StyleSheet.create({
         color: 'green', // Change color for the winner
         backgroundColor: 'gold', // Set your desired background color
         borderRadius: 10, // Set border radius to create soft corners
-        borderWidth: 1, // Set border width
-        borderColor: 'gray', // Set border color
         padding: 10, // Adjust padding as needed
         marginVertical: 10, // Adjust margin as needed
         width: '75%',
@@ -411,8 +411,6 @@ const styles = StyleSheet.create({
         color: 'blue', // Change color for the second place
         backgroundColor: 'silver', // Set your desired background color
     borderRadius: 10, // Set border radius to create soft corners
-    borderWidth: 1, // Set border width
-    borderColor: 'gray', // Set border color
     padding: 10, // Adjust padding as needed
     marginVertical: 10, // Adjust margin as needed
     width: '75%',
@@ -423,8 +421,6 @@ const styles = StyleSheet.create({
         color: 'orange', // Change color for the third place
         backgroundColor: '#b87333', // Set your desired background color
         borderRadius: 10, // Set border radius to create soft corners
-        borderWidth: 1, // Set border width
-        borderColor: 'gray', // Set border color
         padding: 10, // Adjust padding as needed
         marginVertical: 10, // Adjust margin as needed
         width: '75%',
@@ -435,8 +431,6 @@ const styles = StyleSheet.create({
         color: 'white', // Change color for the last place
         backgroundColor: 'black', // Set your desired background color
         borderRadius: 10, // Set border radius to create soft corners
-        borderWidth: 1, // Set border width
-        borderColor: 'gray', // Set border color
         padding: 10, // Adjust padding as needed
         marginVertical: 10, // Adjust margin as needed
         width: '75%',
@@ -477,13 +471,35 @@ const styles = StyleSheet.create({
         marginHorizontal: 40,
       },
       itemText: {
-        fontSize: 16,
+        fontSize: 24,
+        fontFamily: 'TINTIN',
+
       },
       heading: {
-        fontSize: 24,
+        fontSize: 28, // Larger font size for a commanding presence
         fontWeight: 'bold',
-        marginBottom: 10, // Add margin at the bottom for separation
-        marginHorizontal: 40,
-      },
+        color: '#2c3e50', // A strong and authoritative color
+        marginBottom: 15, // Increased margin at the bottom for separation
+        marginHorizontal: 20, // Slightly reduced horizontal margin for a more centered look
+        textTransform: 'uppercase',
+        letterSpacing: 2,
+    },
+      songText: {
+        maxWidth: '78%',
+        fontWeight: 'bold',
+        fontSize: 16,
+        marginBottom: 5,
+    },
+    playerText: {
+        maxWidth: '78%',
+        marginBottom: 5,
+    },
+    artistText: {
+        maxWidth: '78%',
+        marginBottom: 5,
+    },
+
 });
+
+
 

@@ -134,9 +134,19 @@ const Round1 = () => {
                         <View style={[styles.textContainer, { flex: 2 / 3 }]}>
                             <Text style = {{ fontSize: 20,     fontWeight: 'bold',     color: 'black',     marginLeft: 10, }}>{eachSubmission.song}</Text>
                             <Text style = {{ fontSize: 20,     fontWeight: 'bold',     color: 'black',     marginLeft: 10, }}>{eachSubmission.artist}</Text>
-                            <TouchableOpacity onPress={() => openURL(sortedSubmissions[index].url)}>
-                            <Text style = {{ fontSize: 20,     fontWeight: 'bold',     color: 'blue',     marginLeft: 10, }}>{sortedSubmissions[index].url}</Text>
-                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => Linking.openURL(sortedSubmissions[index].url)}>
+                                <Text
+                                    style={{
+                                    fontSize: 20,
+                                    fontWeight: 'bold',
+                                    color: 'blue',
+                                    marginLeft: 10,
+                                    textDecorationLine: 'underline', // Optional: Adds underline
+                                    }}
+                                >
+                                    Open and Listen
+                                </Text>
+                                </TouchableOpacity>
                         </View>
                     ) : (
                         <View style={[styles.textContainer, { flex: 2 / 3 }]}>
@@ -503,14 +513,31 @@ if (theGameDetails.finishers) {
         }}
     >
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <View style={{ backgroundColor: 'white', padding: 20, borderRadius: 10 }}>
+        <View style={{
+  backgroundColor: '#F4F4F4', // Light gray background color
+  padding: 15, // Reduced padding for a more compact look
+  borderRadius: 8, // Slightly reduced border radius
+  alignItems: 'center', // Center content horizontally
+  justifyContent: 'center', // Center content vertically
+}}>
 
-                <Text>Hope the others enjoy your song as much as you do!</Text>
+  <Text style={{ fontSize: 16, marginBottom: 15 }}>
+    Hope the others enjoy your song as much as you do!
+  </Text>
+
+  <Button
+    title="Close"
+    onPress={() => closeFunModal()}
+    color="#007BFF" // Blue color for the button
+  />
+
+</View>
+
+         
 
 
-                <Button title="Close" onPress={() => closeFunModal()} />
 
-            </View>
+
         </View>
     </Modal>
 
@@ -825,7 +852,7 @@ const theModal = (
                 <Text style={{ fontFamily: 'RobotoCondensed', fontSize: 16 }}>Choose your songs below!</Text>
                 <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 10 }}>
                   <TextInput
-                    style={{ flex: 1, height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginRight: 10 }}
+                    style={{ flex: 1, height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginRight: 10, borderRadius: 10 }}
                     placeholder="Song title..."
                     onChangeText={handleInputTitle}
                     value={titleValue}
@@ -840,7 +867,7 @@ const theModal = (
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 10 }}>
                   <TextInput
-                    style={{ flex: 1, height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginRight: 10 }}
+                    style={{ flex: 1, height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginRight: 10, borderRadius: 10 }}
                     placeholder="Artist..."
                     onChangeText={handleInputArtist}
                     value={artistValue}
@@ -854,7 +881,7 @@ const theModal = (
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: 10 }}>
                   <TextInput
-                    style={{ flex: 1, height: 40, borderColor: 'gray', borderWidth: 1, padding: 10, marginRight: 10 }}
+                    style={{ flex: 1, height: 80, borderColor: 'gray', borderWidth: 1, padding: 10, marginRight: 10, borderRadius: 10 }}
                     placeholder="Youtube URL..."
                     onChangeText={handleInputURL}
                     value={URLValue}
@@ -913,11 +940,23 @@ const theModal = (
                         </TouchableOpacity>
                   }
                   {showShowRound1Score ? (
-                    <Button
-                      title="Show Round 1 Score"
-                      onPress={() => showRound1Scores()}
-                      disabled={isSecondButtonDisabled}
-                    />
+                   <TouchableOpacity
+                   style={{
+                    marginHorizontal: 50, // Added margin for spacing
+                     backgroundColor: '#007BFF', // Blue background color
+                     padding: 15,
+                     borderRadius: 8,
+                     alignItems: 'center',
+                     justifyContent: 'center',
+                     marginBottom: 20, // Added margin for spacing
+                   }}
+                   onPress={() => showRound1Scores()}
+                   disabled={isSecondButtonDisabled}
+                 >
+                   <Text style={{ color: 'white', fontSize: 16 }}>
+                     Show Round 1 Score
+                   </Text>
+                 </TouchableOpacity>
                   ) : (
                     <View>
                       {theMissing}
